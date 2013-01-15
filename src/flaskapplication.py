@@ -5,7 +5,7 @@
 #          the request.form field.
 
 from flask import Flask,request,render_template
-from controllers import hello
+from controllers import hello,answer
 
 app = Flask(__name__)
 app.debug = True
@@ -21,7 +21,12 @@ def test():
 
 @app.route("/launch",methods=['POST'])
 def launch():
-    ctrler = hello.Hello()
+    ctrler = hello.Hello(request)
+    return ctrler.render()
+
+@app.route("/answer",methods=['POST'])
+def answerForm():
+    ctrler = answer.Answer(request)
     return ctrler.render()
 
 if __name__ == '__main__':
