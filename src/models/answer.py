@@ -24,6 +24,10 @@ class AnswerModel(Base):
         return [x for x in session.query(AnswerModel)]
 
     @staticmethod
+    def getanswer(usID, qID, ansID):
+        return (session.query(AnswerModel).filter(AnswerModel.userID==usID, AnswerModel.questionID==qID, AnswerModel.answerID==ansID).first())
+
+    @staticmethod
     def save(questionID,userID,answerText):
         session.add(AnswerModel(questionID=questionID,userID=userID,text=answerText))
         session.commit()

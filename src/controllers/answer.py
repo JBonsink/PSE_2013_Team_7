@@ -22,5 +22,7 @@ class Answer():
         elif self.request.form.has_key('showall'):
             #Render all
             return render_template('showanswers.html',answers=answer.AnswerModel.getall())
+        elif self.request.form.has_key('viewanswer'):
+            return render_template('viewanswer.html', vanswer=answer.AnswerModel.getanswer(-1,-1,1))
         else:
             return render_template('answer.html',questionID=qID,userID=uID,questionText=qText)
